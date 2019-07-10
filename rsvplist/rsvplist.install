@@ -19,7 +19,7 @@ function rsvplist_schema() {
         'description'  =>  'The {node} .nid for this rsvp',
         'type'         =>  'varchar',
         'length'       =>  64,
-        'not null'     =>  TRUE,
+        'not null'     =>  FALSE,
         'default'      =>  0,
       ],
       'mail' => [
