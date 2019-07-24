@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * redirect the user edit submit to the users profile page
+ */
+
+Use Drupal\Core\Url;
+
+/**
+ * Impliments hook_form_FORM_ID_alter().
+ */
+function redirect_form_user_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $form['actions']['submit']['#submit'][] = 'redirect_user_submit';
+}
+/**
+ * User profile form submit handler.
+ */
+function redirect_user_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $url = Url::fromRoute('user.page');
+  $form_state->setRedirectUrl($url);
+}

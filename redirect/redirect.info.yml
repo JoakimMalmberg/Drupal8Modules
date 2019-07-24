@@ -1,0 +1,4 @@
+name: redirect
+description: redirect the user edit submit to the users profile page
+type: module
+core: 8.x
