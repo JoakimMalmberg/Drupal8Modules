@@ -25,8 +25,9 @@ class HeroController extends ControllerBase{
     }
 
     return [
-      '#type' => 'markup',
-      '#markup' => '<h4>' . $this->t('These are the best voted heroes') . '</h4>' . '<ol>' . $ourHeroes . '</ol>',
+      '#theme' => 'hero_list',
+      '#items' => $heroes,
+      '#title' => $this->t('Our wonderful heroes list')
     ];
   }
 }
