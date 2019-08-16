@@ -1,0 +1,4 @@
+name: "Module Hero"
+description: "Drupal 8 module"
+type: module
+core: 8.x
