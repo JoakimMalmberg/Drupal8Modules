@@ -15,3 +15,29 @@ function module_hero_theme() {
     ]
   ];
 }
+
+/**
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function module_hero_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  if ($form_id == 'node_article_form') {
+    $form['field_tags']['#access'] = FALSE;
+    $form['title']['widget'][0]['value']['#title'] = t('Article title');
+
+    $form['#validate'][] = '_module_hero_article_validate';
+  }
+}
+
+/**
+ * @param $form
+ * @param $form_state
+ */
+function _module_hero_article_validate(&$form, $form_state)
+{
+  if (is_numeric($form_state->getValue('title')[0]['value'])) {
+    $form_state->setErrorByName('title', t('Title should not be a number!'));
+  }
+}
