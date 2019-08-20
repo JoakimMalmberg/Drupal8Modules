@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * implementing hooks
+ */
+
+///**
+// * implements hook_theme().
+// */
+//function module_hero_theme() {
+//  return [
+//    'hero_list' => [
+//      'variables' => ['items' => [], 'title' => ''],
+//    ]
+//  ];
+//}
+
+/**
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function myconfig_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+
+
+  if ($form_id == 'myconfig.myconfigform' && $form_state->getValue('title')) {
+
+    kint($form); die();
+//      $form['title']['#title'] = 'arsgver';
+    $form['title']['#title'] = $form_state->getValue('title');
+
+//
+//    $form['#validate'][] = '_myconfig_article_validate';
+  }
+
+}
+

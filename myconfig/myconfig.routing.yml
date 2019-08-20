@@ -1,0 +1,7 @@
+myconfig.myconfigform:
+  path: '/myconfig'
+  defaults:
+    _form: '\Drupal\myconfig\Form\MyConfigForm'
+    _title: 'Titel 1'
+  requirements:
+    _permission: 'access content'

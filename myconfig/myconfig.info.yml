@@ -1,0 +1,4 @@
+name: myconfig
+description: change site name
+type: module
+core: 8.x

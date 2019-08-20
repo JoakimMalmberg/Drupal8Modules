@@ -14,7 +14,7 @@ class HeroArticleService
   private $entityQuery;
 
   /**
-   * @var EntityTypeManagerInterfaceManager
+   * @var EntityTypeManagerInterface
    */
   private $entityTypeManager;
 

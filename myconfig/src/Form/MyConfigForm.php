@@ -1,16 +1,13 @@
 <?php
 
-
-namespace Drupal\module_hero\Form;
-
+namespace Drupal\myconfig\Form;
 
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 
-class AjaxHeroForm extends FormBase
+class MyConfigForm extends FormBase
 {
 
   /**
@@ -25,7 +22,7 @@ class AjaxHeroForm extends FormBase
    */
   public function getFormId()
   {
-    return "module_hero_ajaxhero";
+    return "myconfig.myconfigform";
   }
 
   /**
@@ -33,7 +30,7 @@ class AjaxHeroForm extends FormBase
    *
    * @param array $form
    *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param FormStateInterface $form_state
    *   The current state of the form.
    *
    * @return array
@@ -41,24 +38,16 @@ class AjaxHeroForm extends FormBase
    */
   public function buildForm(array $form, FormStateInterface $form_state)
   {
-    $form['message'] = [
-      '#type' => 'markup',
-      '#markup' => '<div class="result_message"></div>',
-    ];
 
-    $form['rival_1'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Rival One'),
-    ];
 
-    $form['rival_2'] = [
+    $form['title'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Rival Two'),
+      '#title' => 'title 2'
     ];
 
     $form['submit'] = [
-      '#type' => 'button',
-      '#value' => $this->t('Who will win?'),
+      '#type' => 'submit',
+      '#value' => $this->t('Save'),
       '#ajax' => [
         'callback' => '::setMessage',
       ]
@@ -69,32 +58,54 @@ class AjaxHeroForm extends FormBase
   /**
    * @param array $form
    * @param FormStateInterface $form_state
+   * @param MessengerInterface $messenger
    * @return AjaxResponse|void
    */
   public function setMessage(array &$form, FormStateInterface $form_state)
   {
-    $winner = rand(1, 2);
     $response = new AjaxResponse();
     $response->addCommand(
       new HtmlCommand(
-        '.result_message',
-        'The winner is ' . $form_state->getValue('rival_' . $winner)
+        '.js-quickedit-page-title.title.page-title',
+        $form_state->getValue('title')
       )
     );
     return $response;
   }
-
 
   /**
    * Form submission handler.
    *
    * @param array $form
    *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param FormStateInterface $form_state
    *   The current state of the form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
-    // TODO: Implement submitForm() method.
+
   }
+
+//  /**
+//   * @param $form
+//   * @param FormStateInterface $form_state
+//   * @param $form_id
+//   */
+//  function hook_form_alter(&$form, FormStateInterface $form_state, $form_id)
+//  {
+//
+//
+//    if ($form_id == 'myconfig.myconfigform') {
+//
+//  //    kint($form); die();
+////      $form['title']['#title'] = 'arsgver';
+//      $form['title']['#title'] = $form_state->getValue('title');
+//
+////
+////    $form['#validate'][] = '_myconfig_article_validate';
+//      return $form;
+//    }
+//
+//  }
+
 }
